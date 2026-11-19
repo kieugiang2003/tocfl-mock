@@ -12,6 +12,7 @@ css/style.css         Giao diện
 js/app.js             Logic: làm bài, chấm điểm, chữa bài, lịch sử, flashcard
 data/config.js        Thang điểm, ngưỡng B1/B2, thời gian làm bài Đọc
 data/tests/de-1.js    Nội dung Đề 1: câu hỏi, đáp án, script, giải thích
+data/tests/de-1.vi-*.js  Bản dịch tiếng Việt, từ vựng, ngữ pháp cho từng câu (Nghe / Đọc)
 audio/de-1/           File nghe của Đề 1
 images/de-1/          Hình trong bài Đọc (quảng cáo, thư, sổ tay…)
 ```
@@ -38,6 +39,7 @@ Lịch sử làm bài và sổ từ được lưu **trong trình duyệt** đang
 
 Gửi Claude thư mục đề (đề PDF, audio, đáp án, script) và nhờ thêm vào. Claude sẽ tạo:
 - `data/tests/de-2.js`
+- `data/tests/de-2.vi-listening.js`, `data/tests/de-2.vi-reading.js` (bản dịch, từ vựng, ngữ pháp)
 - `audio/de-2/…`, `images/de-2/…`
 - thêm một dòng `<script src="data/tests/de-2.js"></script>` vào `index.html`
 

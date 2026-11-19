@@ -543,10 +543,13 @@
         if (filter === "right") return u === q.answer;
         return true;
       });
+      const cnt = { ok: 0, bad: 0, skip: 0 };
       const sheet = data.questions.map((q) => {
         const u = sec.answers[q.n];
         const cls = !u ? "skip" : u === q.answer ? "ok" : "bad";
-        return `<a href="javascript:void 0" data-jump="${q.n}" class="${cls}">${q.n}</a>`;
+        cnt[cls]++;
+        const hidden = !qs.includes(q) ? " dim" : "";
+        return `<a href="javascript:void 0" data-jump="${q.n}" class="${cls}${hidden}" title="Câu ${q.n}">${q.n}</a>`;
       }).join("");
 
       render("history", `
@@ -556,44 +559,149 @@
         <div class="score-grid mt">${scoreCards}${overall}</div>
         <p class="small muted">Điểm /80 là ước lượng tuyến tính từ số câu đúng (TOCFL thật quy đổi theo IRT). Ngưỡng chỉnh được trong <code>data/config.js</code>.</p>
 
-        <div class="row mt2">
-          <h2 style="margin:0">Chữa bài</h2><span class="spacer"></span>
-          ${skills.length > 1 ? `<div class="seg" id="tabs">${skills.map((s) => `<button class="${s === cur ? "on" : ""}" data-s="${s}">${SKILL_VI[s]}</button>`).join("")}</div>` : ""}
-          <div class="seg" id="filt">
-            <button data-f="all" class="${filter === "all" ? "on" : ""}">Tất cả</button>
-            <button data-f="wrong" class="${filter === "wrong" ? "on" : ""}">Sai / bỏ trống</button>
-            <button data-f="right" class="${filter === "right" ? "on" : ""}">Đúng</button>
-          </div>
+        <h2 class="mt2" style="margin-bottom:12px">Chữa bài</h2>
+        <div class="review-layout">
+          <aside class="review-board card">
+            ${skills.length > 1 ? `<div class="seg full" id="tabs">${skills.map((s) => `<button class="${s === cur ? "on" : ""}" data-s="${s}">${SKILL_VI[s]}</button>`).join("")}</div>` : `<b>${SKILL_VI[cur]}</b>`}
+            <div class="board-stats">
+              <span class="st ok">${cnt.ok} đúng</span><span class="st bad">${cnt.bad} sai</span><span class="st skip">${cnt.skip} bỏ trống</span>
+            </div>
+            <div class="seg full small-seg" id="filt">
+              <button data-f="all" class="${filter === "all" ? "on" : ""}">Tất cả</button>
+              <button data-f="wrong" class="${filter === "wrong" ? "on" : ""}">Sai</button>
+              <button data-f="right" class="${filter === "right" ? "on" : ""}">Đúng</button>
+            </div>
+            <div class="answer-sheet board-sheet">${sheet}</div>
+            <div class="board-nav">
+              <button class="btn sm" id="prevQ">↑ Câu trước</button>
+              <button class="btn sm" id="nextQ">Câu sau ↓</button>
+            </div>
+            <label class="board-opt"><input type="checkbox" id="showTr" ${showTr ? "checked" : ""}> Hiện bản dịch tiếng Việt</label>
+            <div class="small muted board-tip">💡 Bôi đen từ tiếng Trung để lưu vào sổ từ, hoặc bấm ＋ ở bảng từ vựng.</div>
+          </aside>
+          <div id="reviews" class="${showTr ? "" : "hide-tr"}">${qs.map((q) => reviewItem(t, cur, q, sec.answers[q.n])).join("") || `<div class="empty card">Không có câu nào.</div>`}</div>
         </div>
-        <div class="card mt"><div class="small muted" style="margin-bottom:8px">Bảng đáp án: bấm vào số câu để xem</div><div class="answer-sheet">${sheet}</div></div>
-        <p class="small muted mt">💡 Bôi đen một từ tiếng Trung trong script hoặc bài đọc để lưu vào sổ từ vựng.</p>
-        <div class="mt" id="reviews">${qs.map((q) => reviewItem(t, cur, q, sec.answers[q.n])).join("") || `<div class="empty card">Không có câu nào.</div>`}</div>
       `);
 
       $app.querySelectorAll("#tabs button").forEach((b) => b.addEventListener("click", () => { location.hash = `#/result/${a.id}/${b.dataset.s}`; }));
       $app.querySelectorAll("#filt button").forEach((b) => b.addEventListener("click", () => { filter = b.dataset.f; draw(); }));
-      $app.querySelectorAll("[data-jump]").forEach((el) => el.addEventListener("click", () => {
-        let target = document.getElementById("rv-" + el.dataset.jump);
-        if (!target && filter !== "all") { filter = "all"; draw(); target = document.getElementById("rv-" + el.dataset.jump); }
-        if (target) { target.scrollIntoView({ behavior: "smooth" }); const d = target.querySelector("details"); if (d) d.open = true; }
+      document.getElementById("showTr").addEventListener("change", (e) => {
+        showTr = e.target.checked; store.set("showTr", showTr);
+        document.getElementById("reviews").classList.toggle("hide-tr", !showTr);
+      });
+
+      const jump = (n) => {
+        let target = document.getElementById("rv-" + n);
+        if (!target && filter !== "all") { filter = "all"; draw(); target = document.getElementById("rv-" + n); }
+        if (target) {
+          const d = target.querySelector("details"); if (d) d.open = true;
+          window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - topOffset() + 4, behavior: "smooth" });
+          setCur(n);
+        }
+      };
+      // Khoảng bị che phía trên: thanh menu (+ board khi ở màn hình điện thoại)
+      const topOffset = () => {
+        const nav = document.querySelector(".topnav"), bd = document.querySelector(".review-board");
+        const mobile = bd && getComputedStyle(bd).position === "sticky" && window.innerWidth <= 900;
+        return (nav ? nav.offsetHeight : 60) + (mobile ? bd.offsetHeight : 0) + 12;
+      };
+      $app.querySelectorAll("[data-jump]").forEach((el) => el.addEventListener("click", () => jump(+el.dataset.jump)));
+
+      // Đánh dấu câu đang xem trên board
+      let curN = null;
+      const setCur = (n) => {
+        curN = n;
+        $app.querySelectorAll(".board-sheet a").forEach((el) => {
+          const on = +el.dataset.jump === n;
+          el.classList.toggle("cur", on);
+          if (on) { const sh = el.parentElement; if (sh.scrollWidth > sh.clientWidth) sh.scrollLeft = el.offsetLeft - sh.clientWidth / 2 + el.offsetWidth / 2; }
+        });
+      };
+      const step = (dir) => {
+        const list = qs.map((q) => q.n);
+        if (!list.length) return;
+        const idx = curN == null ? -1 : list.indexOf(curN);
+        const nx = list[Math.min(list.length - 1, Math.max(0, idx + dir))];
+        jump(nx);
+      };
+      document.getElementById("prevQ").addEventListener("click", () => step(-1));
+      document.getElementById("nextQ").addEventListener("click", () => step(1));
+
+      // Câu đang xem = thẻ cuối cùng có mép trên đã cuộn qua dưới thanh menu
+      if (obs) obs();
+      let raf = 0;
+      const onScroll = () => {
+        if (raf) return;
+        raf = requestAnimationFrame(() => {
+          raf = 0;
+          const items = $app.querySelectorAll(".review-item");
+          const thr = topOffset() + 40;
+          let n = null;
+          for (const el of items) { if (el.getBoundingClientRect().top <= thr) n = +el.id.slice(3); else break; }
+          if (n == null && items.length) n = +items[0].id.slice(3);
+          if (n !== curN) setCur(n);
+        });
+      };
+      window.addEventListener("scroll", onScroll, { passive: true });
+      obs = () => window.removeEventListener("scroll", onScroll);
+
+      $app.querySelectorAll("[data-save]").forEach((b) => b.addEventListener("click", () => {
+        const card = b.closest(".review-item");
+        const src = card.querySelector(".vocab-src.script");
+        openWordModal({
+          word: b.dataset.word, pinyin: b.dataset.py, meaning: b.dataset.vi,
+          example: src ? findSentence(src.textContent, b.dataset.word) : "",
+          source: t.title + " · " + SKILL_VI[cur] + " câu " + card.id.slice(3)
+        }, () => { b.textContent = "✓"; b.disabled = true; });
       }));
     };
+    let obs = null;
+    let showTr = store.get("showTr", true);
     draw();
+    cleanup = () => { if (obs) obs(); };
+  }
+
+  /* Bản dịch tiếng Việt (nếu đề có file .vi) */
+  function viFor(t, skill) { return ((window.TOCFL_VI || {})[t.id] || {})[skill] || {}; }
+  function trBlock(text, label) {
+    if (!text) return "";
+    return `<div class="tr-block"><div class="lbl">${label || "Bản dịch tiếng Việt"}</div><div class="tr-text">${esc(text).replace(/^(Nam|Nữ|Anh|Em):/gm, '<b class="sp">$1:</b>')}</div></div>`;
+  }
+  function vocabTable(list) {
+    if (!list || !list.length) return "";
+    const saved = new Set(vocab().map((w) => w.word));
+    return `<div class="lbl">Từ vựng quan trọng</div>
+      <div class="vocab-table">${list.map(([w, py, vi]) => `<div class="vrow">
+        <span class="w zh">${esc(w)}</span><span class="py">${esc(py)}</span><span class="vi">${esc(vi)}</span>
+        <button class="btn sm add" ${saved.has(w) ? "disabled" : ""} data-save data-word="${esc(w)}" data-py="${esc(py)}" data-vi="${esc(vi)}" title="Lưu vào sổ từ">${saved.has(w) ? "✓" : "＋"}</button>
+      </div>`).join("")}</div>`;
+  }
+  function grammarList(list) {
+    if (!list || !list.length) return "";
+    return `<div class="lbl">Ngữ pháp</div>
+      <ul class="gram-list">${list.map(([p, d]) => `<li><span class="gp zh">${esc(p)}</span><span class="gd">${esc(d)}</span></li>`).join("")}</ul>`;
   }
 
   function reviewItem(t, skill, q, user) {
     const ok = user === q.answer;
     const status = !user ? `<span class="tag warn">Bỏ trống</span>` : ok ? `<span class="tag ok">Đúng</span>` : `<span class="tag bad">Sai</span>`;
+    const VI = viFor(t, skill);
+    const qv = (VI.q || {})[q.n] || {};
     const opts = `<div class="options">${q.options.map((o, i) => {
       const k = KEYS[i];
       const cls = k === q.answer ? "correct" : k === user ? "wrong" : "";
-      return `<div class="opt ${cls}" disabled><span class="key">${k}</span><span>${esc(o)}</span></div>`;
+      let ot = qv.opts && qv.opts[i] ? qv.opts[i] : "";
+      if (ot.startsWith(o)) ot = ot.slice(o.length).trim().replace(/^\((.*)\)$/, "$1");
+      const ov = ot ? `<span class="opt-tr">${esc(ot)}</span>` : "";
+      return `<div class="opt ${cls}" disabled><span class="key">${k}</span><span class="opt-body"><span>${esc(o)}</span>${ov}</span></div>`;
     }).join("")}</div>`;
 
     let material = "";
     if (skill === "listening") {
       const L = t.listening;
       const g = q.group ? L.groups[q.group] : null;
+      const gtr = g && VI.groups ? VI.groups[q.group] : "";
+      var trHtml = trBlock((gtr ? gtr + "\n\n" : "") + (qv.tr || ""), "Bản dịch script");
       const audios = [];
       if (g) audios.push([g.audio, "Đoạn hội thoại / bài nói"]);
       audios.push([q.audio, "Câu hỏi " + q.n]);
@@ -604,22 +712,31 @@
         <div class="script zh vocab-src">${g ? scriptHtml(g.intro.split("\n")[0]) + "\n\n" + scriptHtml(g.script) + "\n\n" : ""}${scriptHtml(q.script)}</div>`;
     } else {
       const p = t.reading.passages[q.passage];
-      const text = p.cloze ? p.text.replace(/\[(\d+)\]/g, (m, n) => (+n === q.n ? `【${q.options[KEYS.indexOf(q.answer)]}】` : "___")) : p.text;
+      const ansWord = q.options[KEYS.indexOf(q.answer)].replace(/\s/g, "");
+      const fill = (s) => s.replace(/\[(\d+)\]/g, (m, n) => (+n === q.n ? `【${ansWord}】` : "___"));
+      const text = p.cloze ? fill(p.text) : p.text;
+      const ptr = VI.passages ? VI.passages[q.passage] : "";
+      var trHtml = trBlock(ptr ? (p.cloze ? fill(ptr) : ptr) : "", "Bản dịch bài đọc");
       material = `
         <div class="lbl">Bài đọc ${esc(p.label)}</div>
         ${p.image ? `<details><summary>Xem hình gốc</summary><img src="${esc(t.imageBase + p.image)}" style="max-width:100%;margin-top:8px;border-radius:8px;border:1px solid var(--line)"></details>` : ""}
         <div class="script zh vocab-src">${esc(text)}</div>`;
     }
+    const promptTr = skill === "reading" || q.group ? qv.tr : "";
 
     return `<div class="card review-item" id="rv-${q.n}">
       <div class="review-head"><b>Câu ${q.n}</b>${status}<span class="muted small">Đáp án: <b>${q.answer}</b>${user && !ok ? ` · Bạn chọn: <b>${user}</b>` : ""}</span></div>
       ${q.prompt ? `<div class="prompt zh vocab-src" style="font-size:18px">${esc(q.prompt)}</div>` : ""}
+      ${promptTr && (q.prompt || skill === "reading") ? `<div class="prompt-tr tr-only">${esc(promptTr)}</div>` : ""}
       ${opts}
-      <details ${!ok ? "open" : ""}><summary class="mt">Giải thích & ${skill === "listening" ? "script" : "bài đọc"}</summary>
+      <details ${!ok ? "open" : ""}><summary class="mt">Giải thích, bản dịch & từ vựng</summary>
         <div class="explain">
           <div class="lbl">Giải thích</div>
           <div class="explain-text">${esc(q.explain || "Chưa có giải thích.")}</div>
+          ${vocabTable(qv.vocab)}
+          ${grammarList(qv.gram)}
           ${material}
+          <div class="tr-only">${trHtml || ""}</div>
         </div>
       </details>
     </div>`;
