@@ -93,6 +93,7 @@ h3 { font-size: 16px; margin: 0 0 10px; }
 .tag.ok { background: var(--ok-soft); color: var(--ok); }
 .tag.bad { background: var(--bad-soft); color: var(--bad); }
 .tag.warn { background: var(--warn-soft); color: var(--warn); }
+.tag.muted { background: #f2f4f7; color: var(--muted); font-weight: 500; }
 
 .seg { display: inline-flex; background: #eef1f7; border-radius: 10px; padding: 3px; }
 .seg button {

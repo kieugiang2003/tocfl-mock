@@ -103,8 +103,8 @@
         <div class="title">${esc(t.title)}</div>
         <div class="zh-name">${esc(t.name || "")}</div>
         <div class="best">
-          <span class="tag ${bl == null ? "" : levelOf("listening", bl) === "none" ? "warn" : "ok"}">Nghe: ${bl == null ? "–" : bl + "/80"}</span>
-          <span class="tag ${br == null ? "" : levelOf("reading", br) === "none" ? "warn" : "ok"}">Đọc: ${br == null ? "–" : br + "/80"}</span>
+          ${t.listening ? `<span class="tag ${bl == null ? "" : levelOf("listening", bl) === "none" ? "warn" : "ok"}">Nghe: ${bl == null ? "–" : bl + "/80"}</span>` : `<span class="tag muted">Nghe: đang cập nhật</span>`}
+          ${t.reading ? `<span class="tag ${br == null ? "" : levelOf("reading", br) === "none" ? "warn" : "ok"}">Đọc: ${br == null ? "–" : br + "/80"}</span>` : `<span class="tag muted">Đọc: đang cập nhật</span>`}
         </div>
         <a class="btn primary" href="#/test/${esc(t.id)}">Làm bài</a>
       </div>`;
@@ -163,7 +163,8 @@
   function pageTest(id) {
     const t = testById(id);
     if (!t) return pageHome();
-    let skill = "full", mode = "exam";
+    const hasL = !!t.listening, hasR = !!t.reading;
+    let skill = hasL && hasR ? "full" : hasL ? "listening" : "reading", mode = "exam";
     const draw = () => {
       render("", `
         <a href="#/" class="muted small">← Trang chủ</a>
@@ -171,10 +172,11 @@
         <div class="card mt">
           <h3>Chọn phần thi</h3>
           <div class="choice-grid" data-g="skill">
-            <button class="choice ${skill === "full" ? "on" : ""}" data-v="full"><b>Thi full</b><span class="muted small">Nghe 50 câu → Đọc 50 câu</span></button>
-            <button class="choice ${skill === "listening" ? "on" : ""}" data-v="listening"><b>Chỉ Nghe</b><span class="muted small">50 câu · khoảng 60 phút</span></button>
-            <button class="choice ${skill === "reading" ? "on" : ""}" data-v="reading"><b>Chỉ Đọc</b><span class="muted small">50 câu · ${CFG.readingMinutes} phút</span></button>
+            ${hasL && hasR ? `<button class="choice ${skill === "full" ? "on" : ""}" data-v="full"><b>Thi full</b><span class="muted small">Nghe 50 câu → Đọc 50 câu</span></button>` : ""}
+            ${hasL ? `<button class="choice ${skill === "listening" ? "on" : ""}" data-v="listening"><b>Chỉ Nghe</b><span class="muted small">50 câu · khoảng 60 phút</span></button>` : ""}
+            ${hasR ? `<button class="choice ${skill === "reading" ? "on" : ""}" data-v="reading"><b>Chỉ Đọc</b><span class="muted small">50 câu · ${CFG.readingMinutes} phút</span></button>` : ""}
           </div>
+          ${!hasL || !hasR ? `<p class="small muted mt">Đề này hiện mới có phần ${hasL ? "Nghe" : "Đọc"}. Phần ${hasL ? "Đọc" : "Nghe"} sẽ được thêm khi có đủ tài liệu.</p>` : ""}
           <h3 class="mt2">Chế độ</h3>
           <div class="choice-grid" data-g="mode">
             <button class="choice ${mode === "exam" ? "on" : ""}" data-v="exam"><b>Thi thật</b><span class="muted small">Audio tự chạy, chỉ nghe 1 lần, tự chuyển câu. Bài Đọc bấm giờ. Không quay lại câu trước.</span></button>
