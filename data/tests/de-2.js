@@ -1,6 +1,5 @@
 // Đề 2 — TOCFL Band B (進階高階級) mock test 2
-// Nguồn: Mock 2 (聽力). Đáp án theo answer key gốc.
-// Phần Đọc: chờ file đáp án gốc (rd_mock2_test_BandB_answer.pdf).
+// Nguồn: Mock 2 (聽力 + 閱讀). Đáp án theo answer key gốc.
 window.TOCFL_TESTS = window.TOCFL_TESTS || [];
 window.TOCFL_TESTS.push({
   id: "de-2",
@@ -247,6 +246,90 @@ window.TOCFL_TESTS.push({
     ]
   },
 
-  /* Phần Đọc sẽ được thêm khi có đáp án gốc */
-  reading: null
+  /* ===================== 閱讀 READING ===================== */
+  reading: {
+    durationMin: 60,
+    sections: [
+      { title: "第一部分　選詞填空（第 1～15 題）", instr: "在這一部分，每一段短文有幾個空格，每個空格有四個選項，請選出正確的答案完成短文。" },
+      { title: "第二部分　閱讀理解（第 16～50 題）", instr: "在這一部分，請閱讀材料或短文，並根據內容回答幾個問題。" }
+    ],
+    passages: {
+      p1: { label: "（一）", cloze: true, text: "我剛來這裡工作的時候，我的老闆幫我在這個大都市裡租了一間小房間。他對這個地點非常滿意，附近交通不但 [1] ，也有多家商店和超市，買什麼都方便。不過我覺得大都市的生活 [2] 太小，休息的時候還是覺得有壓力，住在這裡一點也 [3] 輕鬆。聽說這座城市西邊的郊區有不少便宜的大房子，那裡 [4] 交通不方便，[4] 有很多自然風景，我希望 [5] 工作穩定以後，再搬到那兒住。" },
+      p2: { label: "（二）", cloze: true, text: "小君養的烏龜生病了，必須住院一個月，醫藥費加上住院費一共得付八萬元。這 [6] 費用小君必須好幾個月不吃、不喝、不花錢，[7] 付得了，但她最後還是請醫生想辦法治烏龜的病。醫生被她的愛心所 [8] ，決定只收她四萬元。現在，小君總算 [9] ，要照顧好動物，除了牠們平常食物的費用，[10] 得準備牠們臨時可能需要看病的錢，這真的不是一件容易的事。" },
+      p3: { label: "（三）", cloze: true, text: "每年春分這一天，日、夜時間一樣長，世界 [11] 地都能照到陽光，有「平等」之意，因此，聯合國將這天定為「世界地球日」，[12] 平等的理想。事實上，每年的地球日本來日期都不 [13] ，直到1970年，美國一名大學生在該年的地球日──4月22日發起環境保護活動，[14] 全美二千多萬人的響應與支持。[15] 該次活動非常成功，此後的地球日就定在4月22日，主題也轉而趨向環保。" },
+      r1: { label: "（一）", image: "r1.jpg", text: "血量庫存標示：A型、B型、O型、AB型（AB型庫存最少）\nAB型血　庫存不足\n急需您的愛心捐血\n捐血地點請上高雄捐血中心網站（http://www.ks.blood.org.tw），或來電 07-3660999，我們將竭誠為您服務。" },
+      r2: { label: "（二）", image: "r2.jpg", text: "現代滷味\n即日起～1/20日止\n凡消費即贈送精品鑰匙圈一份\n消費滿100元以上送20元折價券（限點特定火鍋料）\n地址：花蓮市和平路123號\n外送專線：03-8333368" },
+      r3: { label: "（三）", text: "每晚約七點半，我會拿著家中的垃圾走到十字路口的超級市場前等垃圾車，和附近的鄰居一邊等一邊聊天。那些六十幾歲的老鄰居，都是看著我長大的。最近，他們常問：「文玉，有沒有男朋友？」、「工作怎麼樣？」不過，因為他們總是忘記自己問過，所以基本上，我每天都在回答同樣的問題。" },
+      r4: { label: "（四）", text: "一項研究發現，女人比男人更容易感覺到「疼痛」，也就是說，在相同的情況下，女人對痛的感覺比男人高出20%。研究還發現，聽音樂可有效降低疼痛感。換句話說，因牙齒痛去看牙時，可以聽音樂或玩一些帶有音樂的遊戲。好聽的、有趣的音樂不但能讓你覺得沒那麼痛，也能幫助你別太注意旁邊機器的聲音。" },
+      r5: { label: "（五）", text: "一位二十歲的大學生，花了一年的時間，製造出了一台煮咖啡的機器。這台咖啡機能讓人只用「嘴」就煮出咖啡！如果你是這台咖啡機的主人，想喝咖啡的時候，只需要在離它三公尺以內的地方說：「煮一杯熱咖啡！」。大概五分鐘以後，你就能夠喝到一杯熱熱的咖啡。" },
+      r6: { label: "（六）", text: "西洋情人節這一天，情人之間會互相贈送禮物，主要是希望能向對方表達自己濃濃的愛。送給情人的禮物有很多選擇，其中，除了常見的鮮花，巧克力也是很受歡迎的禮物。有些人覺得巧克力太甜，容易讓人變胖。事實上，每天吃一點巧克力對健康很有幫助，尤其是顏色深、味道苦的巧克力，越黑越苦越健康。" },
+      r7: { label: "（七）", text: "一般人都以為用CD儲存資料，就能永久保存珍貴的相片或影片，這恐怕是錯誤觀念。日本最新研究發現，CD也有壽命，如果CD長期被放在潮濕的地方或陽光下，時間久了，檔案損壞的風險一定較高。因此，要想保存珍貴影像，最好還是定期在不同地方多儲存幾份。" },
+      r8: { label: "（八）", text: "在中國，多數人長久以來都認為紙是東漢時期的蔡倫發明的，如今這個觀點被推翻了。根據考古學家的最新發現，在蔡倫之前，中國人早已知道如何造紙，只是造紙的品質較差罷了。儘管蔡倫不是發明紙的人，但他卻改進了造紙的材料和技術。大家為了紀念他的貢獻，便把這種改良過的紙叫做「蔡侯紙」。" },
+      r9: { label: "（九）", image: "r9.jpg", text: "寄件人：小芳\n收件人：小明、美美、林華\n大家好：\n我有一張4.6（五）19:30「美麗新世界」的電影票，不知道有沒有人想要去看？這張票是我弟弟的，他本來要去看，但是臨時有事，沒辦法去，所以請我幫他賣掉。有興趣的人請來找我，謝謝！（電影票三百元）\n小芳:)" },
+      r10: { label: "（十）", image: "r10.jpg", text: "愛家鄉．徵文／圖活動\n用文章、照片表現你對家鄉的愛！\n活動時間：五月中到七月底\n活動對象：限「秋水鄉」的居民\n活動方式：將作品寄到：秋水鄉秋水路666號 秋水鄉公所，或是寄到電子信箱：qiushui@abcmail.com。\n入選獎勵：\n第一名（1人）：3000元現金、秋水餐廳招待券一張\n第二名（2人）：秋水旅館免費住一晚\n第三名（3人）：秋水鄉茶葉一罐\n參加獎（不限）：秋水鄉明信片一套\n洽詢專線：(02)2333-6633 李小姐" },
+      r11: { label: "（十一）", image: "r11.jpg", text: "通知\n大家好：\n一年一次的運動會又來了！明天的運動會，改在新校區舉行（大中路100號），歡迎其他校區的老師與同學們到新校區參加。\n老師與同學們可以利用下面三種交通工具到達新校區：\n1. 電車：在新店站下車，向南走十分鐘就可以到新校區\n2. 公車：44號、47號、48號、50號在大中站下車\n3. 校車：08:00、08:30、09:00在舊校區校門口出發（大概15分鐘可到新校區）\n運動會早上十點開始，歡迎帶你的家人和朋友一起來！" },
+      r12: { label: "（十二）", image: "r12.jpg", text: "【巨輝鋼鐵】誠徵會計助理\n■限女性、諳電腦\n■可配合加班、出差\n■大學畢、商業相關科系畢\n■有電腦專業證照者優先考慮\n攜履歷表親洽　意洽：07-8456****　陳小姐\n\n【永昌科技(股)公司】招募早班工作夥伴\n待優、福利佳\n歡迎二度就業、可培訓\n備駕照\n謝絕短期工讀\n請電：04-5869****" },
+      r13: { label: "（十三）", image: "r13.jpg", text: "各位同學好：\n華語中心將於12月20日舉辦「阿里山兩日遊」，本次旅遊學生免費，由學校負責巴士的交通費與保險費。因巴士座位有限，僅提供80位名額，報名日期自11月4日起至額滿為止，請到華語中心辦公室報名。\n注意事項：\n※報名時請繳交保證金每人NT500元整，活動結束後保證金將全部退還！\n※已經報名的同學如果突然有事無法參加，請於12月15日晚上6:00前帶著保證金收據至華語中心辦公室領回保證金，不可找其他人代替參加旅遊。\n※每位學生最多可帶兩名家人或朋友一同參加旅遊，但每人需自付旅遊費用1,200元整。" },
+      r14: { label: "（十四）", text: "英國一位十九歲的青年得到一種很奇怪的病，他只能記得最近兩天內的事情，兩天以前的事他都想不起來，連上個禮拜自己的生日晚會都不記得。家人和朋友替他拍了許多照片，可是他看了照片，還是完全不記得過去發生的事情。雖然這個病不影響他的健康，卻影響了他的交友情形，他的女朋友就因為他總是忘記自己說過的話、做過的事，所以和他分開了。" },
+      r15: { label: "（十五）", text: "有些人喜歡去一種特別的餐廳，這種餐廳讓人付一筆錢，就有吃不完的食物，想吃多少，就吃多少。去這種餐廳的人，常常覺得要吃得很飽才合算。不過，這樣的飲食方式是否正常，值得我們深思。台中市有一位年輕人，每兩、三天就到這樣的餐廳吃飯。有一天，他突然覺得身體很不舒服，到醫院檢查後，醫生發現他的身體有一堆毛病，比老人還差，必須馬上住院治療。所以說，這種餐廳一年當中偶爾去一次還可以，天天吃，就等著向醫生「報到」了。" },
+      r16: { label: "（十六）", image: "r16.jpg", text: "管理中心大樓裝修公告　公告日期：2010.11.15\n本中心大樓訂於2011年1月1日至3月31日全面進行裝修工程，施工期間大樓全區將暫停開放，非本中心員工請勿進入工程管制範圍，以維護您的安全。造成不便，敬請見諒！\n施工期間，本中心所有英語及電腦研習課程照常舉行，惟研習教室暫移至新生大飯店（仁愛路二段1683號），待施工完畢後再回原教室上課，本中心將提供交通接駁車來回接送，詳細資訊請參考本中心網站及各班研習通知。\n若您有相關問題，請洽負責單位分機：\n大樓改裝工程　總務處　8304　張主任\n研習課程訊息　招生組　8101　劉小姐" },
+      r17: { label: "（十七）", text: "以經營運動器材為主的喬山健康科技公司，如今已成為亞洲第一大、世界第五大的運動器材公司。能有如此發展，全靠創辦人羅老闆的堅持。孩童時期，羅老闆因為家裡窮，無論是寒冷的冬天或炎熱的夏天，都只能光著腳到學校讀書。儘管對自己的出身沒有選擇權，但他認為，人生的道路本來就是這樣，必須克服環境阻礙，一步一步往前走。上天給他這樣的環境，讓他了解窮人沒有難過的權利，不應把消極、逃避的想法放在心上。而這股強大的意志力，後來便成為羅老闆經營企業的動力，也讓喬山這家公司三十年來穩定地成長、茁壯。" },
+      r18: { label: "（十八）", text: "西元七世紀，古埃及一位國王為證明埃及語是世上最古老的語言，於是派官兵與護士將兩名剛出生不久的嬰兒，帶往國內一處無人居住的祕密地點，他規定全體人員除了提供嬰兒飲食以外，不准與嬰兒有任何語言交流。國王認為，孩子所發出的第一個聲音一定是人類最古老的語言，而他也希望這個聲音屬於埃及語。然而事與願違，兩年後孩子們最先發出的音與埃及語毫無關係，令國王失望極了。這就是人類歷史上最早記載的心理學實驗，雖然實驗失敗了，卻證明了人類早在一千多年前，便開始為研究神秘的心理現象而努力著。" },
+      r19: { label: "（十九）", text: "研究顯示，有93%的青少年不管去哪裡都帶著手機，沒人打電話來的時候，他們會緊張、擔心。青少年離不開手機的原因是──他們希望有人陪，所以他們在等人的時候，會一直使用手機，讓人覺得他們很忙、朋友很多。有些父母認為孩子帶手機上學比較安全，所以許多孩子也帶著手機到學校。但是大部分的老師都希望學生不要帶很貴的手機到學校，因為容易弄丟或被弄壞。也有老師認為，父母要多了解孩子使用手機的情形，同時教他們在使用手機時，對時間和金錢應有正確的想法。" },
+      r20: { label: "（二十）", text: "在與人互動的過程中，我們除了可以從談話內容了解對方的想法，也能由舉止、裝扮來掌握對方的心思。而在我的診所裡，來求診的人幾乎都戴著帽子。我有些好奇「非心理科」的求診病患是不是比較少人戴帽子呢？「戴帽行為」與「心理問題」之間的關係似乎很有趣。\n我猜想，戴上帽子能掩蓋內心的某些問題，或是把自己與他人眼神接觸的機會降至最低，又或者，用來遮擋不完美的髮型等。然而，戴著帽子也容易使他人將視線往自己身上放，也就是說，掩蓋的同時也在顯露，不免讓外人更好奇：裡頭究竟有什麼東西？印證了「此地無銀三百兩」的老話。\n我也剖析自己，每當我感到沮喪、對自己失去信心時，就戴起帽子再外出。我深知此時我不願意與任何人的視線相對，我當然也明白戴帽容易引人注意，但是我更需要它來讓自己的心情趨於穩定。" }
+    },
+    questions: [
+      { n: 1, sec: 0, passage: "p1", options: ["流行", "熱鬧", "發達", "順利"], answer: "C", explain: "交通發達 = giao thông phát triển, thuận tiện. Kết hợp cố định 交通 + 發達/方便. 熱鬧 dùng cho nơi đông vui, không đi với 交通." },
+      { n: 2, sec: 0, passage: "p1", options: ["位置", "地方", "背景", "空間"], answer: "D", explain: "生活空間太小 = không gian sống quá chật → thấy áp lực. 空間 chỉ khoảng không, độ rộng; 位置 là vị trí." },
+      { n: 3, sec: 0, passage: "p1", options: ["不", "很", "倒", "夠"], answer: "A", explain: "一點也不 + Adj = không … chút nào: 一點也不輕鬆." },
+      { n: 4, sec: 0, passage: "p1", options: ["不論…都…", "雖然…但是…", "除非…否則…", "假如…那麼…"], answer: "B", explain: "Giao thông bất tiện (điểm trừ) nhưng có nhiều cảnh thiên nhiên (điểm cộng) → quan hệ nhượng bộ 雖然…但是…" },
+      { n: 5, sec: 0, passage: "p1", options: ["對", "為", "照", "等"], answer: "D", explain: "等 + sự việc + 以後，再… = đợi đến khi … rồi mới …: 等工作穩定以後，再搬到那兒住." },
+      { n: 6, sec: 0, passage: "p2", options: ["頓", "組", "場", "筆"], answer: "D", explain: "筆 là lượng từ cho khoản tiền: 一筆錢、這筆費用. 頓 cho bữa ăn, 場 cho trận/buổi." },
+      { n: 7, sec: 0, passage: "p2", options: ["才", "又", "仍", "更"], answer: "A", explain: "Phải nhịn ăn uống nhiều tháng 才 trả nổi → 才 = mới (điều kiện khó mới đạt được)." },
+      { n: 8, sec: 0, passage: "p2", options: ["滿足", "感動", "刺激", "鼓勵"], answer: "B", explain: "被 + 人/事 + 所 + V: 被她的愛心所感動 = cảm động trước tấm lòng của cô ấy → nên chỉ lấy nửa tiền." },
+      { n: 9, sec: 0, passage: "p2", options: ["明白", "在乎", "渴望", "犧牲"], answer: "A", explain: "總算明白 = cuối cùng cũng hiểu ra; theo sau là điều cô hiểu được: nuôi động vật không dễ." },
+      { n: 10, sec: 0, passage: "p2", options: ["既", "僅", "卻", "還"], answer: "D", explain: "除了…，還… = ngoài … ra còn …." },
+      { n: 11, sec: 0, passage: "p3", options: ["外", "當", "各", "本"], answer: "C", explain: "世界各地 = khắp nơi trên thế giới." },
+      { n: 12, sec: 0, passage: "p3", options: ["陳列", "應付", "宣傳", "奮鬥"], answer: "C", explain: "Lập ra Ngày Trái Đất để 宣傳平等的理想 = tuyên truyền lý tưởng bình đẳng. 陳列 là bày biện, 應付 là đối phó." },
+      { n: 13, sec: 0, passage: "p3", options: ["例外", "固定", "典型", "平衡"], answer: "B", explain: "Ngày Trái Đất ban đầu 日期不固定 (ngày không cố định), đến 1970 mới định là 22/4." },
+      { n: 14, sec: 0, passage: "p3", options: ["獲得", "包括", "呈現", "面臨"], answer: "A", explain: "獲得…響應與支持 = nhận được sự hưởng ứng và ủng hộ." },
+      { n: 15, sec: 0, passage: "p3", options: ["一旦", "與其", "即使", "由於"], answer: "D", explain: "由於 = do, bởi vì: do hoạt động rất thành công nên sau đó ngày Trái Đất được định là 22/4." },
+
+      { n: 16, sec: 1, passage: "r1", prompt: "16. 這個捐血中心的傳單上說了什麼？", options: ["服務別人就是幫助別人", "捐血地點將透過電話通知", "捐血中心需要各種血型的血", "目前哪一種血型的血明顯不夠"], answer: "D", explain: "「AB型血　庫存不足」 → nói rõ nhóm máu AB đang thiếu. Địa điểm xem trên web hoặc gọi điện hỏi, không phải trung tâm gọi báo (B sai); chỉ cần gấp nhóm AB (C sai)." },
+      { n: 17, sec: 1, passage: "r2", prompt: "17. 根據這張廣告單，下面哪一個是對的？", options: ["店家接受電話訂餐", "點特定火鍋料就送現金", "二月前消費就送小禮物", "消費一百元以上才能得到鑰匙圈"], answer: "A", explain: "「外送專線」 = số điện thoại giao hàng → nhận đặt món qua điện thoại. Tặng phiếu giảm giá chứ không phải tiền (B sai); khuyến mãi đến 20/1 (C sai); 「凡消費」 = cứ mua là được móc khóa (D sai)." },
+      { n: 18, sec: 1, passage: "r3", prompt: "18. 這段話提到文玉的什麼事？", options: ["她經常忘記回答鄰居的問題", "她等垃圾車的地方就在家門口", "她和鄰居每天聊天的內容都一樣", "她不願意回答跟交友或工作有關的事"], answer: "C", explain: "Hàng xóm quên mình đã hỏi nên 「我每天都在回答同樣的問題」 → ngày nào cũng nói chuyện giống nhau. Người quên là hàng xóm, không phải Văn Ngọc (A sai); chỗ đợi xe rác là trước siêu thị ở ngã tư (B sai)." },
+      { n: 19, sec: 1, passage: "r4", prompt: "19. 這個研究說了什麼？", options: ["女人在音樂方面的興趣與表現比男人高得多", "聽音樂的時候，人們比較不容易感覺到疼痛", "看病時播放音樂，有助於降低醫院內的噪音", "男人比女人更怕痛，牙痛時常不願去看牙醫"], answer: "B", explain: "「聽音樂可有效降低疼痛感」. Nhạc giúp mình ít để ý tiếng máy, không làm giảm tiếng ồn bệnh viện (C sai); phụ nữ mới nhạy cảm với đau hơn (D sai)." },
+      { n: 20, sec: 1, passage: "r5", prompt: "20. 根據這段介紹，可以知道什麼事？", options: ["咖啡機是透過聲音來控制的", "咖啡的品質不能只用嘴來判斷", "第一個發明咖啡機的是個年輕人", "用這台咖啡機煮咖啡，多遠都聞得到"], answer: "A", explain: "Chỉ cần đứng trong vòng 3 mét nói 「煮一杯熱咖啡！」 → máy điều khiển bằng giọng nói. 「只用嘴」 = chỉ dùng miệng (nói)." },
+      { n: 21, sec: 1, passage: "r6", prompt: "21. 關於這篇文章，下面哪一個是正確的？", options: ["深色巧克力不比淺色的健康", "現代人早已不流行買花、送花", "吃巧克力不是對身體沒有好處", "情人節送禮物才能證明彼此的愛"], answer: "C", explain: "「每天吃一點巧克力對健康很有幫助」 → 不是…沒有好處 (phủ định kép = có lợi). A ngược với 「越黑越苦越健康」; hoa vẫn là quà 常見 (B sai)." },
+      { n: 22, sec: 1, passage: "r7", prompt: "22. 這篇文章談到關於使用CD存檔的哪一件事？", options: ["是最能保障檔案品質的方式", "所儲存的內容都有保存期限", "其壽命比一般人想像的還長", "存檔程序複雜是唯一的缺點"], answer: "B", explain: "「CD也有壽命」 → dữ liệu lưu trong CD cũng có thời hạn. Mọi người tưởng lưu được vĩnh viễn, thực tế ngắn hơn tưởng tượng (C sai)." },
+      { n: 23, sec: 1, passage: "r8", prompt: "23. 根據這段話，下面哪一項是對的？", options: ["考古學家不贊同蔡倫擅長造紙", "「蔡侯紙」是中國人最早發明的紙", "很多人最近才知道東漢以前沒有紙", "蔡倫的主要成就在於改進造紙的品質"], answer: "D", explain: "「他卻改進了造紙的材料和技術」 → công lao chính là cải tiến chất lượng giấy. Trước Thái Luân đã có giấy, nên B, C sai." },
+      { n: 24, sec: 1, passage: "r9", prompt: "24. 小芳為什麼寫這封信？", options: ["打算送電影票給朋友", "想找人一起買電影票", "要幫家人出售電影票", "請人陪弟弟去看電影"], answer: "C", explain: "Vé của em trai, em có việc đột xuất 「所以請我幫他賣掉」 → bán vé giúp người nhà. Vé có giá 300 đồng, không phải tặng (A sai)." },
+      { n: 25, sec: 1, passage: "r9", prompt: "25. 從這封信可以知道什麼事？", options: ["現在買電影票可以打折", "電影開演的時間已經確定", "小芳的弟弟也會收到小芳的信", "買票的人可以自己選擇想看的電影"], answer: "B", explain: "Vé ghi rõ 4.6 (thứ sáu) 19:30, phim 「美麗新世界」 → giờ chiếu đã cố định, phim cũng cố định (D sai). Người nhận là Tiểu Minh, Mỹ Mỹ, Lâm Hoa (C sai)." },
+      { n: 26, sec: 1, passage: "r10", prompt: "26. 關於這個活動，下面何者正確？", options: ["可提供面對面交友的機會", "只要參加就能得到明信片", "有三個人可以拿到錢和禮物", "鼓勵大家拍一些和家鄉有關的影片"], answer: "B", explain: "「參加獎　不限　秋水鄉明信片一套」 → ai tham gia cũng được bưu thiếp. Chỉ giải nhất (1 người) có tiền (C sai); gửi bài viết, ảnh chứ không phải video (D sai)." },
+      { n: 27, sec: 1, passage: "r10", prompt: "27. 想參加的人應該要注意什麼事？", options: ["自己必須是秋水鄉的人", "5月30日以後才能報名", "有問題就寫信給李小姐", "作品要親自送到鄉公所"], answer: "A", explain: "「活動對象：限『秋水鄉』的居民」. Có thắc mắc thì gọi điện cho cô Lý (C sai); gửi bưu điện hoặc email (D sai)." },
+      { n: 28, sec: 1, passage: "r11", prompt: "28. 這張通知主要是為了說明什麼事？", options: ["運動會只對校內師生開放", "搭車前往運動會會場的辦法", "未來運動會都改在新校區舉辦", "今年運動會將同時在兩個校區舉行"], answer: "B", explain: "Phần chính của thông báo là ba cách đi đến cơ sở mới: tàu điện, xe buýt, xe trường. Hoan nghênh mang theo người nhà, bạn bè (A sai); chỉ nói 「明天的運動會」 đổi địa điểm (C sai)." },
+      { n: 29, sec: 1, passage: "r11", prompt: "29. 有關新校區的地理位置，下列何者正確？", options: ["位於大中路以南", "在新店火車站旁邊", "距離舊校區只要十分鐘", "離它最近的公車站是大中站"], answer: "D", explain: "Xe buýt 「在大中站下車」 → trạm gần nhất là trạm Đại Trung. Cơ sở mới nằm trên đường Đại Trung số 100 (A sai); từ ga Tân Điếm đi bộ 10 phút (B sai); xe trường mất khoảng 15 phút (C sai)." },
+      { n: 30, sec: 1, passage: "r12", prompt: "30. 張小姐剛從全能大學國際貿易系畢業，她還應具備什麼條件，較有機會到巨輝鋼鐵工作？", options: ["可配合公司電話面試", "願意外派到國外分公司", "能提出電腦相關能力證明", "曾從事鋼鐵產業方面的工作"], answer: "C", explain: "Cô ấy đã đáp ứng 大學畢、商業相關科系. Để có lợi thế: 「有電腦專業證照者優先考慮」 → chứng chỉ máy tính. Phải mang hồ sơ đến tận nơi, không phỏng vấn qua điện thoại (A sai)." },
+      { n: 31, sec: 1, passage: "r12", prompt: "31. 永昌科技公司的工作最適合下面哪一種人？", options: ["計畫半工半讀", "毫無工作經驗", "有夜間工作傾向", "受過一定職業訓練"], answer: "D", explain: "Yêu cầu 「備駕照」 (có bằng lái) và hoan nghênh 「二度就業」 (người quay lại đi làm) → người đã qua đào tạo nhất định. 「謝絕短期工讀」 loại A; 「早班」 (ca sáng) loại C." },
+      { n: 32, sec: 1, passage: "r13", prompt: "32. 關於這個旅遊活動，下面哪一項正確？", options: ["學生要自己另外付保險費", "這是一個當日來回的行程", "所有參加旅遊的人都免費", "學生的家人想參加得另外付費"], answer: "D", explain: "「每位學生最多可帶兩名家人或朋友…但每人需自付旅遊費用1,200元」. Trường trả bảo hiểm (A sai); 兩日遊 = chuyến 2 ngày (B sai)." },
+      { n: 33, sec: 1, passage: "r13", prompt: "33. 薏如是華語中心的學生，她想報名這個活動，她要注意什麼事？", options: ["12月15日是報名的最後一天", "不去的話應該找同學代替自己參加", "臨時不能去，要有收據才能領回保證金", "出發前一星期取消報名的人，不能拿回保證金"], answer: "C", explain: "「帶著保證金收據至華語中心辦公室領回保證金」 → phải có biên lai. Đăng ký đến khi đủ chỗ (A sai); 「不可找其他人代替」 (B sai); trước 18:00 ngày 15/12 vẫn lấy lại được, tức 5 ngày trước khi đi (D sai)." },
+      { n: 34, sec: 1, passage: "r14", prompt: "34. 這篇文章指出這位青年怎麼樣？", options: ["看照片才能讓他想起一些事", "他擔心女友有天會忘了自己", "他以為他參加了一個生日會", "他的病使他的生活受到影響"], answer: "D", explain: "Bệnh 「影響了他的交友情形」, bạn gái chia tay → cuộc sống bị ảnh hưởng. Xem ảnh vẫn 「完全不記得」 (A sai)." },
+      { n: 35, sec: 1, passage: "r14", prompt: "35. 這位青年發生了什麼事？", options: ["他無法遵守自己的承諾", "他把重要的照片弄丟了", "他的健康狀況越來越差", "他只記得一週以前的事"], answer: "A", explain: "Anh 「總是忘記自己說過的話、做過的事」 → không giữ được lời hứa. Bệnh 「不影響他的健康」 (C sai); chỉ nhớ chuyện trong 2 ngày gần nhất (D sai)." },
+      { n: 36, sec: 1, passage: "r15", prompt: "36. 文章中的年輕人怎麼樣？", options: ["拿了點藥就出院了", "很在意用餐的環境", "有病沒病都去醫院", "是某間餐廳的熟客"], answer: "D", explain: "「每兩、三天就到這樣的餐廳吃飯」 → khách quen. Anh phải 「馬上住院治療」, không phải lấy thuốc rồi về (A sai)." },
+      { n: 37, sec: 1, passage: "r15", prompt: "37. 下列何者符合作者對去那類餐廳吃飯的看法？", options: ["便宜的東西沒好貨", "簡直是花錢買罪受", "食物才是最天然的藥", "寧可吃多，也不吃虧"], answer: "B", explain: "Ăn buffet thường xuyên thì 「就等著向醫生『報到』」 → bỏ tiền ra mua bệnh vào người = 花錢買罪受. D là suy nghĩ của khách ăn buffet mà tác giả phê phán." },
+      { n: 38, sec: 1, passage: "r16", prompt: "38. 關於管理中心大樓的裝修工程，下面哪一項正確？", options: ["工程問題由總務處負責回答", "中心員工不能進入施工區域", "預計從2010年年底開始施工", "大樓部分區域得事先申請才能進入"], answer: "A", explain: "「大樓改裝工程　總務處　8304　張主任」 → hỏi về công trình thì gọi phòng hành chính. Chỉ cấm người 「非本中心員工」 (B sai); thi công từ 1/1/2011 (C sai); toàn tòa nhà tạm đóng (D sai)." },
+      { n: 39, sec: 1, passage: "r16", prompt: "39. 2011年一整年，王福每週五會到這個中心上電腦課，他應該注意下面哪一件事？", options: ["可憑上課證乘接駁車至新大樓", "將會有三個月的時間暫停上課", "至三月份應留意教室變更通知", "課程查詢可以撥電話給張主任"], answer: "C", explain: "Từ tháng 1 đến 3 lớp học chuyển sang khách sạn Tân Sinh, 「待施工完畢後再回原教室上課」 → khoảng tháng 3 cần chú ý thông báo đổi phòng. Lớp vẫn học bình thường (B sai); hỏi về lớp học thì gọi cô Lưu (D sai)." },
+      { n: 40, sec: 1, passage: "r17", prompt: "40. 小時候的遭遇使羅老闆對人生產生了什麼想法？", options: ["人要堅強才能生存", "命運是由上天安排的", "窮人很難擺脫消極的想法", "對於無法選擇環境感到挫折"], answer: "A", explain: "「必須克服環境阻礙，一步一步往前走」, 「窮人沒有難過的權利」 → phải kiên cường mới sống được. C ngược ý: ông cho rằng không nên giữ ý nghĩ tiêu cực." },
+      { n: 41, sec: 1, passage: "r17", prompt: "41. 本文主要在談論羅老闆的哪一件事？", options: ["成立喬山公司的細節與經過", "不向命運低頭的精神和態度", "將運動器材作為產品的理由", "目前在社會上的地位及影響力"], answer: "B", explain: "Bài tập trung vào ý chí vượt hoàn cảnh nghèo khó của ông chủ La → tinh thần không cúi đầu trước số phận (不向命運低頭)." },
+      { n: 42, sec: 1, passage: "r18", prompt: "42. 這項以兩名嬰兒為對象的實驗是怎麼進行的？", options: ["由國王親自照顧他們", "派官兵帶他們離開埃及", "禁止所有人對他們說任何話", "命令專人教他們學習古老的語言"], answer: "C", explain: "「不准與嬰兒有任何語言交流」 → cấm mọi người nói chuyện với trẻ. Hai đứa trẻ được đưa đến nơi bí mật 「國內」 (trong nước), không phải ra khỏi Ai Cập (B sai)." },
+      { n: 43, sec: 1, passage: "r18", prompt: "43. 關於本文中提到的心理學實驗，下面哪一項正確？", options: ["是第一個有正式記錄的心理學實驗", "其結果和設計者事先想像的差不多", "實驗目的是為擴大埃及的統治範圍", "意外發現嬰兒說出第一個字是可以控制的"], answer: "A", explain: "「這就是人類歷史上最早記載的心理學實驗」. Kết quả 「事與願違」 (trái mong muốn) nên B sai; mục đích là chứng minh tiếng Ai Cập cổ nhất (C sai)." },
+      { n: 44, sec: 1, passage: "r19", prompt: "44. 這個研究主要在說什麼？", options: ["青少年使用手機的心理及影響", "青少年利用手機來學習的優點", "現代青少年必須使用手機的原因", "父母不允許孩子使用手機的理由"], answer: "A", explain: "Bài nói tâm lý (sợ cô đơn, muốn tỏ ra đông bạn) và ảnh hưởng của việc dùng điện thoại, cùng ý kiến của phụ huynh, giáo viên." },
+      { n: 45, sec: 1, passage: "r19", prompt: "45. 這篇文章提到，青少年在等人的時候，一直使用手機的原因是什麼？", options: ["想掌握對方的動向", "擔心對方忘了約會", "怕被人認為沒有朋友", "一次要處理的事太多"], answer: "C", explain: "「讓人覺得他們很忙、朋友很多」 → sợ bị cho là không có bạn." },
+      { n: 46, sec: 1, passage: "r19", prompt: "46. 文章中的老師對青少年使用手機的意見是什麼？", options: ["人手一支，有總比沒有好", "多考慮價錢、需求再購買", "尊重個人意願不必過分干涉", "學校的責任大於家長的責任"], answer: "B", explain: "Giáo viên không muốn học sinh mang điện thoại đắt tiền, và cho rằng phải có 「對時間和金錢應有正確的想法」 → cân nhắc giá cả, nhu cầu. Họ muốn phụ huynh quan tâm hơn (C, D sai)." },
+      { n: 47, sec: 1, passage: "r20", prompt: "47. 第二段主要在談什麼事？", options: ["作者以自身經驗說明帽子的功能", "作者建議戴帽者能多注意服裝儀容", "作者推測戴帽者的心態與戴帽後的效應", "作者從他人觀點來說明戴帽子的不便之處"], answer: "C", explain: "Đoạn 2 mở đầu 「我猜想」: đoán tâm lý người đội mũ (che giấu, tránh ánh mắt) và hiệu ứng ngược (càng che càng gây chú ý). Kinh nghiệm bản thân là đoạn 3 (A sai)." },
+      { n: 48, sec: 1, passage: "r20", prompt: "48. 作者用「此地無銀三百兩」來形容人的哪一種行為？", options: ["不懂得拒絕外人的好意", "考慮太多無關緊要的事", "總以為神不知、鬼不覺", "常注意小事、忽略大事"], answer: "C", explain: "此地無銀三百兩 (\"ở đây không có 300 lạng bạc\"): muốn giấu nhưng lại để lộ. Người như vậy tưởng không ai biết (神不知、鬼不覺), thực ra càng che càng lộ." },
+      { n: 49, sec: 1, passage: "r20", prompt: "49. 本文第三段作者說了什麼？", options: ["戴上帽子更會讓他感到不安", "他想通過戴帽子引起別人重視", "他從來就不知道戴上帽子很醒目", "他缺乏自信時，也總是戴帽再出門"], answer: "D", explain: "「每當我感到沮喪、對自己失去信心時，就戴起帽子再外出」. Mũ giúp ông 「心情趨於穩定」 (A sai); ông biết mũ dễ gây chú ý (C sai)." },
+      { n: 50, sec: 1, passage: "r20", prompt: "50. 寫這篇文章的人應從事什麼職業？", options: ["新聞記者", "服飾店員", "眼科醫師", "心理治療師"], answer: "D", explain: "「在我的診所裡，來求診的人」 + so sánh với bệnh nhân 「非心理科」 → tác giả là bác sĩ/nhà trị liệu tâm lý." }
+    ]
+  }
 });
